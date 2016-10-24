@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="dia26app">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	<title>Concisa</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<script src="js/dia25Ctrl.js"></script>
+	<script src="js/angular.js"></script>
+    
+	<style>
+		body {
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+		}
+		
+		main {
+			flex: 1 0 auto;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.img_concisa{
+			margin: 5px;
+			max-width: 100%;
+		}
+		.rBlueIcon {
+			color:#0d47a1 ;
+		}
+		.collection{
+			margin:40px;
+			border:none;
+		}
+		.titulo{
+			margin-top:40px;
+			margin-left:40px;
+		}
+	</style>
+	<script>
+		var app = angular.module('myapp', ['ngRoute','ngResource']);
+		angular.module('dia26app', []).controller('mainController', function ($scope) {
+
+        // create the list of sushi rolls 
+        $scope.horarios = [
+            {
+                'horario': '8h30',
+                'sala': 'Auditório Otton Fava',
+                'minicurso': 'Minicurso: Ativismo judicial: a judicialização da politica',
+                'Instrutor': 'Angélica Barroso Bastos',
+                'vagas': '90'
+            },
+            {
+                'horario': '9h30',
+                'sala': 'V101',
+                'minicurso': 'Minicurso:  Usucapião administrativa x usucapião de bem público',
+                'Instrutor': 'Serciane Bousada Peçanha',
+                'vagas': '50'
+            },
+            {
+                'horario': '9h30',
+                'sala': 'V102',
+                'minicurso': 'Minicurso: Da Des-reterritorialização do Direito do Estado Soberano Nacional',
+                'Instrutor': 'Teophilo De Araujo',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'Aud. Padres do Trabalho',
+                'minicurso': 'Palestra: Endividamento Público',
+                'Instrutor': 'Tarrara Alves da Silva Horsth',
+                'vagas': '90'
+            },
+            {
+                'horario': '19h',
+                'sala': 'Aud. Senhor Zezinho',
+                'minicurso': 'Cinema jurídico: The corporation',
+                'Instrutor': 'Dahyana Siman Carvalho Da Costa e Veiga Ayres Pimenta',
+                'vagas': '120'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V110',
+                'minicurso': 'Minicurso: Responsabilidade Sócio empresarial',
+                'Instrutor': 'Anna Carolina Moreira De Oliveira',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V111',
+                'minicurso': 'Oficina criativa de texto (CPP)',
+                'Instrutor': 'Jorge Henrique Assis Marins',
+                'vagas': '25'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V201',
+                'minicurso': 'Minicurso: Diferencial de alíquota de ICMS',
+                'Instrutor': 'Anna Carolina Moreira De Oliveira',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V202',
+                'minicurso': 'Minicurso: HP 12C ',
+                'Instrutor': 'Fernando Cesar Lemos Morais',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V203',
+                'minicurso': 'Minicurso: Ativismo judicial: a judicialização da politica',
+                'Instrutor': 'Angélica Barroso Bastos',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V204',
+                'minicurso': 'Oficina de Encadernação artesanal',
+                'Instrutor': 'Andressa Morais',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V207',
+                'minicurso': 'Oficina de Fotografia ',
+                'Instrutor': 'Edmar Silva',
+                'vagas': '20'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V303',
+                'minicurso': 'Minicurso:  Alguns apontamentos das repercussões do novo CPC no processo do trabalho',
+                'Instrutor': 'Tarcisio Anicio Pereira',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V304',
+                'minicurso': 'Minicurso: O que é Neoconstitucionalismo? Localização hermenêutica do tema.',
+                'Instrutor': 'Hermundes Souza Flores Mendonca',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'V306',
+                'minicurso': 'Minicurso:  Partilha Sucessória',
+                'Instrutor': 'Maruza Cruz Pinto Lima',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V307',
+                'minicurso': 'Minicurso: Marketing Pessoal',
+                'Instrutor': 'Erika Sampaio Pascoal Assis',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V110',
+                'minicurso': 'Minicurso: Economia da RMVA: diagnóstico e perspectivas',
+                'Instrutor': 'Carlos Eduardo Ferreira',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55h',
+                'sala': 'V201',
+                'minicurso': 'Minicurso: Diferencial de alíquota de ICMS',
+                'Instrutor': 'Eneias Pereira Fernandes',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V202',
+                'minicurso': 'Oficina: Maquiagem artística',
+                'Instrutor': 'Tuane Vieira',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V203',
+                'minicurso': 'Minicurso: Marketing de Varejo (um case de sucesso)',
+                'Instrutor': 'Priscila Coelho',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V204',
+                'minicurso': 'Minicurso: Startup - Como vender sua ideia',
+                'Instrutor': 'Kesley Henrique',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V207',
+                'minicurso': 'Minicurso: Logística Internacional',
+                'Instrutor': 'Rosemary Silva Gomes',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V303',
+                'minicurso': 'Minicurso:  Alguns apontamentos das repercussões do novo CPC no processo do trabalho',
+                'Instrutor': 'Tarcisio Anicio Pereira',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V304',
+                'minicurso': 'Minicurso:  Os fundamentos para o desdobramento possessório',
+                'Instrutor': 'Gustavo Lana Ferreira',
+                'vagas': '50'
+            },
+            {
+                'horario': '20h55',
+                'sala': 'V203',
+                'minicurso': 'Minicurso: Da Des-reterritorialização do Direito do Estado Soberano Nacional',
+                'Instrutor': 'Teophilo De Araujo',
+                'vagas': '50'
+            },
+
+
+        ];
+
+    });
+	</script>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div class="nav-wrapper #ffffff white">
+				<a href="index.html"><img src="img/concisa.png" class="img_concisa" ></a>
+			</div>
+		</nav>
+	</header>
+	</header>
+	<main>
+		<div class="container" ng-controller="mainController">
+			<input type="text" ng-model="criterioDeBusca" class="form-control" placeholder="Pesquisa">
+			<table class="responsive-table">
+				<thead>
+					<tr>
+						<th>Horário</th>
+						<th>Local</th>
+						<th>Evento</th>
+						<th>Descrição</th>
+						<th>Qtd.Vagas</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="horario in horarios | filter:criterioDeBusca">
+						<td>{{horario.horario}}</td>
+						<td>{{horario.sala}}</td>
+						<td>{{horario.minicurso}}</td>
+						<td>{{horario.Instrutor}}</td>
+						<td>{{horario.vagas}}</td>
+						<td colspan="2"><b>19h às 22h</td>
+											<td colspan="2"><b>Empresa Ação (Feira de empreendedorismo – negócios, praça de alimentação e shows)</td>
+										</tr>
+									</tbody>
+								</table>
+			</div>
+	</main>
+	<footer class="page-footer #ffffff white">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h5 class="center-align"><img src="img/unileste.png"></h5>
+					<p class=" text-lighten-4 center-align">Obrigado por fazer parte do nosso aplicativo de qualidade colaborativa!</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright #0d47a1 blue darken-4">
+			<div class="container center-align #0d47a1 blue darken-4">
+				© 2016 Copyright - Desenvolvido por <a href="https://www.facebook.com/manuela.valentim "><span class="white-text ">Manuela Valentim</span></a>
+			</div>
+		</div>
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script>
+      $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+  </script>
+</body>
+
+</html>

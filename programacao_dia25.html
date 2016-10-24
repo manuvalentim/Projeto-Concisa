@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="dia25app">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+	<title>Concisa</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+	<script src="js/dia25Ctrl.js"></script>
+	<script src="js/angular.js"></script>
+    
+	<style>
+		body {
+			display: flex;
+			min-height: 100vh;
+			flex-direction: column;
+		}
+		
+		main {
+			flex: 1 0 auto;
+		}
+		
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.img_concisa{
+			margin: 5px;
+			max-width: 100%;
+		}
+		.rBlueIcon {
+			color:#0d47a1 ;
+		}
+		.collection{
+			margin:40px;
+			border:none;
+		}
+		.titulo{
+			margin-top:40px;
+			margin-left:40px;
+		}
+	</style>
+	<script>
+		var app = angular.module('myapp', ['ngRoute','ngResource']);
+		angular.module('dia25app', []).controller('mainController', function ($scope) {
+
+        // create the list of sushi rolls 
+        $scope.horarios = [
+            {
+                'horario': '8h30',
+                'sala': 'Aud. Padres do Trabalho',
+                'minicurso': 'Cinema jurídico: The Corporation',
+                'Instrutor': 'Dahyana Siman Carvalho Da Costa e Daniel Veiga Ayres Pimenta',
+                'vagas': '99'
+            },
+            {
+                'horario': '8h30',
+                'sala': 'V101',
+                'minicurso': 'O que é Neoconstitucionalismo? Localização hermenêutica do tema.',
+                'Instrutor': 'Hermundes Souza Flores Mendonca',
+                'vagas': '50'
+            },
+            {
+                'horario': '9h30',
+                'sala': 'V102',
+                'minicurso': 'Direito Internacional',
+                'Instrutor': 'Ranidson Gleyck Amancio E Souza',
+                'vagas': '50'
+            },
+            {
+                'horario': '9h30',
+                'sala': 'V103',
+                'minicurso': 'Minicurso:  A falta de estabelecimento penal adequado e autorização para regime menos severo',
+                'Instrutor': 'Pierry Souza Abrantes',
+                'vagas': '50'
+            },
+            {
+                'horario': '19h',
+                'sala': 'Teatro João Paulo II',
+                'minicurso': 'Palestra: Responsabilidade Ambiental das empresas e do Estado',
+                'Instrutor': 'Orlindo Francisco Borges',
+                'vagas': '350'
+            },
+			{
+                'horario': '19h',
+                'sala': 'Auditório Otton Fava',
+                'minicurso': 'Palestra: Empreendedorismo: gestão de escritório contábil',
+                'Instrutor': 'Célio Nério Pavione',
+                'vagas': '90'
+            },
+			{
+                'horario': '20h',
+                'sala': 'Aud. Padres do Trabalho',
+                'minicurso': 'Palestra: Novidades no Simples Nacional',
+                'Instrutor': 'Natália Cerise',
+                'vagas': '95'
+            },
+			{
+                'horario': '19h',
+                'sala': 'B208',
+                'minicurso': 'Oficina de rádio novela',
+                'Instrutor': 'Willian Trevisani',
+                'vagas': '15'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V101',
+                'minicurso': 'Minicurso: Economia da RMVA: diagnóstico e perspectivas',
+                'Instrutor': 'Carlos Eduardo Ferreira',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V102',
+                'minicurso': 'BMC - CANVAS',
+                'Instrutor': 'Robesio Teixeira Gomes',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V103',
+                'minicurso': 'Minicurso:  Como elaborar controles financeiros para pequenas e médias empresas',
+                'Instrutor': 'Jose Geraldo Teixeira',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V105',
+                'minicurso': 'Conversation Class',
+                'Instrutor': 'Silvia das Graças Almeida',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V111',
+                'minicurso': 'Minicurso: SPSS',
+                'Instrutor': 'Felipe Chaves Inácio',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V201',
+                'minicurso': 'Minicurso:  Justiça de transição',
+                'Instrutor': 'Bruno Ribeiro Machado',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V204',
+                'minicurso': 'Oficina de Fotografia',
+                'Instrutor': 'Edmar Silva',
+                'vagas': '20'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V301',
+                'minicurso': 'Minicurso:  O que é Neoconstitucionalismo? Localização hermenêutica do tema.',
+                'Instrutor': 'Hermundes Souza Flores Mendonca',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V302',
+                'minicurso': 'Vigência, Revogação e Aplicação da Lei: Aspectos da Lei de Introdução às Normas do Direito Brasileiro.',
+                'Instrutor': 'Iolanda Morais Torres Magalhaes',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V303',
+                'minicurso': 'Minicurso: Introdução ao Direito Urbanístico',
+                'Instrutor': 'Juliana Dornelas M. Flores De Mendonça',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V304',
+                'minicurso': 'Minicurso:  Investigação Policial',
+                'Instrutor': 'Gilmaro Alves Ferreira',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V305',
+                'minicurso': 'Minicurso:  Direito Internacional',
+                'Instrutor': 'Ranidson Gleyck Amancio E S',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V306',
+                'minicurso': 'Minicurso:  Usucapião administrativa x usucapião de bem público',
+                'Instrutor': 'Serciane Bousada Pecanha',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V308',
+                'minicurso': 'Como se preparar para o ENAD',
+                'Instrutor': 'Glória Vitorino',
+                'vagas': '50'
+            },
+			{
+                'horario': '19h',
+                'sala': 'V309',
+                'minicurso': 'Minicurso: Administração do Tempo',
+                'Instrutor': 'Carlos Alberto Serra Negra',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V111',
+                'minicurso': 'Minicurso: SPSS',
+                'Instrutor': 'Felipe Inácio',
+                'vagas': '25'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V101',
+                'minicurso': 'Macroeconomia do Brasil',
+                'Instrutor': 'Renato Ataíde',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V102',
+                'minicurso': 'BMC - CANVAS',
+                'Instrutor': 'obesio Teixeira Gomes',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V103',
+                'minicurso': 'Minicurso:  Como elaborar controles financeiros para pequenas e médias empresas',
+                'Instrutor': 'José Geraldo Teixeira',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V105',
+                'minicurso': 'Minicurso: HP 12C',
+                'Instrutor': 'Fernando Cesar Lemos Morais',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V204',
+                'minicurso': 'Oficina de Fotografia ',
+                'Instrutor': 'Edmar Silva',
+                'vagas': '20'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V303',
+                'minicurso': 'Minicurso: Introdução ao Direito Urbanístico',
+                'Instrutor': 'Juliana Dornelas M. Flores De Mendonça',
+                'vagas': '50'
+            },
+			{
+                'horario': '20h55',
+                'sala': 'V306',
+                'minicurso': 'Minicurso:  Usucapião administrativa x usucapião de bem público',
+                'Instrutor': 'Serciane Bousada Peçanha',
+                'vagas': '50'
+            },
+			
+
+
+
+        ];
+
+    });
+	</script>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div class="nav-wrapper #ffffff white">
+				<a href="index.html"><img src="img/concisa.png" class="img_concisa" ></a>
+			</div>
+		</nav>
+	</header>
+	</header>
+	<main>
+		<div class="container" ng-controller="mainController">
+			<input type="text" ng-model="criterioDeBusca" class="form-control" placeholder="Pesquisa">
+			<table class="responsive-table">
+				<thead>
+					<tr>
+						<th>Horário</th>
+						<th>Local</th>
+						<th>Evento</th>
+						<th>Descrição</th>
+						<th>Qtd.Vagas</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="horario in horarios | filter:criterioDeBusca">
+						<td>{{horario.horario}}</td>
+						<td>{{horario.sala}}</td>
+						<td>{{horario.minicurso}}</td>
+						<td>{{horario.Instrutor}}</td>
+						<td>{{horario.vagas}}</td>
+						<td colspan="2"><b>19h às 22h</td>
+											<td colspan="2"><b>Empresa Ação (Feira de empreendedorismo – negócios, praça de alimentação e shows)</td>
+										</tr>
+									</tbody>
+								</table>
+			</div>
+	</main>
+	<footer class="page-footer #ffffff white">
+		<div class="container">
+			<div class="row">
+				<div class="col s12">
+					<h5 class="center-align"><img src="img/unileste.png"></h5>
+					<p class=" text-lighten-4 center-align">Obrigado por fazer parte do nosso aplicativo de qualidade colaborativa!</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright #0d47a1 blue darken-4">
+			<div class="container center-align #0d47a1 blue darken-4">
+				© 2016 Copyright - Desenvolvido por <a href="https://www.facebook.com/manuela.valentim "><span class="white-text ">Manuela Valentim</span></a>
+			</div>
+		</div>
+	</footer>
+
+
+
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script>
+      $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+  });
+  </script>
+</body>
+
+</html>
